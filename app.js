@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
+var cors =  require('cors');
+
 var books = require('./routes/books');
 var users = require('./routes/users');
 
@@ -12,6 +14,7 @@ var con = mysql.createConnection({ host: "localhost", database: "libros", user: 
 con.connect();
 
 var app = express();
+app.use(cors())
 
 app.use((req, res, next) => {
   req.db = con;
